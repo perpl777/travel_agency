@@ -1,0 +1,96 @@
+
+.block {
+    width: 608px;
+    height: 421px;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #EDE6D3;
+    border-radius: 33px;
+}
+
+.TourImg {
+    position: absolute;
+    width: 608px;
+    height: 281px;
+}
+
+.countryTour {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 130px;
+    margin-left: 45px;
+    z-index: 1;
+}
+
+.nameTour {
+    background-color: rgba(216, 130, 1, 0.44);
+    font-size: 36px;
+    font-weight: 800;
+    padding: 12px 40px; 
+    margin-top: 17px;
+    z-index: 1;
+}
+
+.stars {
+    margin-right: 45px;
+    margin-top: 15px;
+    display: flex;
+    float: right;
+}
+
+.date {
+    margin-top: 0;
+    margin-left: 45px;
+    font-size: 16px;
+    color: #0b0b0b;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.calendarImg {
+    margin-right: 10px;
+}
+
+.price {
+    margin-left: 45px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #0b0b0b;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    width: 180px;
+    align-items: center;
+}
+
+.priceNum {
+    font-weight: 600;
+    color: #D89901;
+}
+
+.ChoiceTour {
+    display: flex;
+    justify-content: right;
+    margin-top: -20px;
+    margin-right: 45px;
+}
+
+.btnChoice {
+    align-items: center;
+    justify-content: center;
+    background-color: #D89901;
+    color: #F7F7F7;
+    font-size: 24px;
+    font-weight: 500;
+    width: 154px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btnChoice:hover {
+    background-color: #a5770b;
+}

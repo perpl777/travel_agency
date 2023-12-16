@@ -1,0 +1,123 @@
+
+
+.register {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    
+    background: url('./img/a.png')no-repeat;
+    background-position: center;
+    background-size: cover; /*-- при скролле + и - масштаб изменялся но фон картинка оставалась */
+}
+
+
+.blackBlock {
+    width: 858px;
+    height: 800px;
+    background-color: rgba(11, 11, 11, 0.63);
+    border-radius: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleRegister {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.formRegister {
+    display: flex;
+    margin: 60px;
+}
+
+.columns {
+    flex-wrap: wrap;
+    display: flex;
+    flex: 1;
+}
+
+.column {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.inputBlockRegister {
+    outline: none;
+    appearance: none;
+    all: unset;
+    width: 320px;
+    border-bottom: 2px solid #fff;
+    font-size: 16px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+label {
+    font-size: 16px;
+    margin-left: 30px;
+}
+
+.btnRegister {
+    position: absolute;
+    margin-top: 500px;
+    margin-left: 200px;
+    width: 333px;
+    height: 53px;
+    border-radius: 33px;
+    color: #0b0b0b;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.loginHref {
+    color: #f7f7f7;
+    margin-top: 50px;
+}
+
+.modal {
+    position: absolute;
+    background-color: #0b0b0b;
+    margin-top: 200px;
+    width: 500px;
+    height: 200px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+
+.modalRegiserBtn {
+    margin-top: 30px;
+    width: 253px;
+    height: 43px;
+    border-radius: 33px;
+    color: #0b0b0b;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+}
+
+.error {
+    position: absolute;
+    color: rgb(210, 7, 7);
+    bottom: 0;
+    margin-bottom: 140px;
+    margin-left: 270px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+    text-align: center;
+}

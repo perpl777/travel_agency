@@ -1,0 +1,82 @@
+
+.aboutUs {
+    background: url("./img/aboutus.png") no-repeat center center;
+    background-size:cover;
+    width: 100%;
+    height: 810px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 632px;
+}
+
+.blackBlock {
+    width: 1308px;
+    border-radius: 114px;
+    height: 691px;
+    background-color: rgba(11, 11, 11, 0.63);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.h3 {
+    color: #f7f7f7;
+    margin-top: 42px;
+}
+
+.aboutUsContent {
+    width: 996px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.headText1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 44px;
+    margin-bottom: 10px;
+}
+
+.descriptionText1 {
+    width: 382px;
+    margin-left: 44px;
+    margin-bottom: 40px;
+}
+
+.imgPhotos1 {
+    margin-right: 102px;
+    width: 419px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headText2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 44px;
+    margin-bottom: 10px;
+}
+
+.descriptionText2 {
+    width: 440px;
+    margin-right: 44px;
+    margin-bottom: 40px;
+}
+
+.imgPhotos2 {
+    margin-left: 102px;
+    width: 419px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.line {
+    position: absolute;
+    margin-top: 120px;
+}
+

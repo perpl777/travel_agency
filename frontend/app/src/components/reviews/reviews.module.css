@@ -1,0 +1,55 @@
+
+
+.review {
+    width: 415px;
+    height: 312px;
+    border-radius: 50px;
+    background-color: #EDE5D3;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 59px;
+    margin-bottom: 70px;
+}
+
+.name {
+    font-size: 16px;
+    color: #0b0b0b;
+    margin: 0;
+    padding-left: 100px;
+    padding-top: 30px;
+}
+
+.avatar {
+    position: absolute;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+.review__text{
+    font-size: 16px;
+    color: #0b0b0b;
+    font-weight: 500;
+    width: 354px;
+    padding-left: 30px;
+    padding-top: 60px;
+}
+
+.stars {
+    float: right;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.backImg2 {
+    position: absolute;
+    z-index: -1;
+    margin-left: 400px;
+    margin-top: -150px;
+}
+
+.backImg1 {
+    position: absolute;
+    z-index: -1;
+    margin-left: -50px;
+    margin-top: 200px;
+}

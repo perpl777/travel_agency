@@ -1,0 +1,86 @@
+
+.login{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    
+    background: url('./img/a.png')no-repeat;
+    background-position: center;
+    background-size: cover; /*-- при скролле + и - масштаб изменялся но фон картинка оставалась */
+}
+
+.formLogin {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorMessage {
+    position: absolute;
+    margin-top: 290px;
+    color: rgb(165, 33, 33);
+    font-size: 16px;
+}
+
+.blackBlock {
+    width: 658px;
+    height: 648px;
+    background-color: rgba(11, 11, 11, 0.63);
+    border-radius: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleLogin {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 80px;
+    text-align: center;
+}
+
+
+.inputBlockLogin {
+    outline: none;
+    appearance: none;
+    all: unset;
+    width: 410px;
+    border-bottom: 2px solid #fff;
+}
+
+.inputBoxLogin {
+    margin-top: 100px;
+}
+
+.btnLogin {
+    margin-top: 100px;
+    width: 133px;
+    height: 53px;
+    border-radius: 33px;
+    color: #0b0b0b;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.registerHref {
+    color: #f7f7f7;
+    margin-top: 50px;
+}
+
+.error {
+    position: absolute;
+    color: rgb(210, 7, 7);
+    bottom: 0;
+    margin-bottom: 270px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+    text-align: center;
+}

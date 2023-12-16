@@ -1,0 +1,13 @@
+.headTextReviews{
+    font-size: 32px;
+    color: #0b0b0b;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+
+.reviews {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 67px;
+}
