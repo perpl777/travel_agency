@@ -57,7 +57,7 @@
 }
 
 .btnLogin {
-    margin-top: 100px;
+    margin-top: 60px;
     width: 133px;
     height: 53px;
     border-radius: 33px;
@@ -78,9 +78,41 @@
     position: absolute;
     color: rgb(210, 7, 7);
     bottom: 0;
-    margin-bottom: 270px;
+    margin-bottom: 284px;
     font-size: 16px;
     font-weight: 400;
-    margin-top: 10px;
     text-align: center;
+}
+
+.loggedInContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loggedInMessage {
+    font-size: 32px;
+}
+.loggedButton {
+    width: 353px;
+    height: 43px;
+    border-radius: 33px;
+    color: #0b0b0b;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #f7f7f798;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+
+.homeHref {
+    color: #f7f7f7;
+    margin-top: 45px;
+
 }

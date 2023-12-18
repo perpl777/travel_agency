@@ -14,8 +14,6 @@ app.add_middleware(
     allow_headers=['Content-Type'],
 )
 
-
-
 # Модели данных
 class Tours(BaseModel):
     tour_name: str

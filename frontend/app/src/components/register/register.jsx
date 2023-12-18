@@ -76,10 +76,16 @@ function RegistrationPage() {
       return;
     }
 
+    if (!/^\d+$/.test(formData.password)) {
+      setError('Пароль должен состоять только из цифр');
+      return;
+    }
+    
     if (formData.password.length < 3) {
       setError('Пароль должен быть больше 3 символов');
       return;
     }
+
 
     if (formData.password !== formData.passwordConfirm) {
       setError('Пароли не совпадают');
@@ -101,6 +107,8 @@ function RegistrationPage() {
     <div className={styles.register}>
     <div className={styles.blackBlock}>
       <div className={styles.titleRegister}> Регистрация </div>
+     
+    
       <form onSubmit={handleSubmit} className={styles.formRegister}>
         <div className={styles.columns}>
           <div className={styles.column}>
@@ -167,6 +175,7 @@ function RegistrationPage() {
         </div>
         }
         <Link to={'/login'}><div className={styles.loginHref}>Уже зарегистрированы? Войти</div></Link>
+        <Link to={'/'}><div className={styles.homeHref}>Вернуться на главную страницу</div></Link>
     </div>
   </div>
   );

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Carousel } from "@mantine/carousel";
-
 import styles from './header.module.css';
 import searchImg from './img/s.svg';
 import loginImg from './img/login.svg';
@@ -11,6 +10,8 @@ import CarouselTours from '../carouselPopular/carouselPopular';
 
 
 function Header() {
+
+    const userData = JSON.parse(localStorage.getItem('userData'));
 
     const stylesSlides = {
         height: 200,
@@ -75,7 +76,11 @@ function Header() {
                 <a href="tel:+79647518167" target='_blank'>+7 (964) 751-81-67</a>
                 <div className={styles.login}>
                     <img src={loginImg}/>
+                    {userData ? (
+                    <Link to="/login"><button className={styles.loginBtn}>выйти</button></Link> 
+                    ) : (
                     <Link to="/login"><button className={styles.loginBtn}>войти</button></Link>
+                    )}
                 </div>
             </div>
         
