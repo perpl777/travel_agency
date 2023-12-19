@@ -143,6 +143,10 @@
 .price_tour {
     font-size: 18px;
     margin-bottom: 35px;
+    width: 170px;
+    background-color: rgba(216, 130, 1, 0.44);
+    border-radius: 20px;
+    padding: 5px 10px;
 }
 
 .country_tour {
@@ -160,9 +164,24 @@
     margin-bottom: 10px;
 }
 
+.title_bold{
+    font-weight: 600;
+}
+
+.excursion_container{
+    margin-bottom: 40px;
+    background-color: rgba(247, 247, 247, 0.45);
+    border-radius: 30px;
+    padding: 20px 10px;
+}
+
 .starsh {
     font-size: 16px;
     margin-bottom: 48px;
+    width: 130px;
+    background-color: rgba(216, 130, 1, 0.44);
+    border-radius: 20px;
+    padding: 5px 10px;
 }
 
 .excursion_name {
@@ -172,7 +191,6 @@
 
 .excursion_descr {
     font-size: 16px;
-    margin-bottom: 40px;
 }
 
 .guide {
@@ -182,10 +200,14 @@
 
 .guide_phone {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .flights {
+    margin-top: 5px;
+    background-color: rgba(216, 130, 1, 0.44);
+    border-radius: 28px;
+    padding: 5px 10px;
     font-size: 16px;
     margin-bottom: 10px;
     color: #000;

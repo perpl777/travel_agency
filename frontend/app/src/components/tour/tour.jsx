@@ -96,22 +96,22 @@ function Tour({tourData}) {
               x
             </button>
             <div>
-            <div className={styles.name_tour}>Тур: {tourData.tour.tour_name}</div>
-            <div className={styles.country_tour}>Страна: {tourData.tour.country}, {tourData.city.city_name}</div>
-            <div className={styles.data_tour}>Дата: {tourData.tour.arrival_date} - {tourData.tour.departure_date}</div>
-            <div className={styles.price_tour}>Цена: {tourData.tour.price} руб</div>
+            <div className={styles.name_tour}>Тур:{tourData.tour.tour_name}</div>
+            <div className={styles.country_tour}><span className={styles.title_bold}>Страна:</span> {tourData.tour.country}, {tourData.city.city_name}</div>
+            <div className={styles.data_tour}><span className={styles.title_bold}>Дата: </span>{tourData.tour.arrival_date} - {tourData.tour.departure_date}</div>
+            <div className={styles.price_tour}><span className={styles.title_bold}>Цена: </span>{tourData.tour.price} руб</div>
             </div>
             <div>
-              <div className={styles.hotel}>Отель: {tourData.hotels.hotel_name}</div>
-              <div className={styles.starsh}>Класс отеля: {tourData.hotels.classhotel}*</div>
+              <div className={styles.hotel}><span className={styles.title_bold}>Отель: </span>{tourData.hotels.hotel_name}</div>
+              <div className={styles.starsh}><span className={styles.title_bold}>Класс отеля: </span>{tourData.hotels.classhotel}*</div>
             </div>
-            <div>
-              <div className={styles.excursion_name}>Экскурсии: {tourData.excursions.excursion_name}</div>
+            <div className={styles.excursion_container}>
+              <div className={styles.excursion_name}><span className={styles.title_bold}>Экскурсии: </span>{tourData.excursions.excursion_name}</div>
               <div className={styles.excursion_descr}>{tourData.excursions.description}</div>
             </div>
             <div>
-              <div className={styles.guide}>Гид: {tourData.guides.guide_name}</div>
-              <div className={styles.guide_phone}>Номер телефона: {tourData.guides.phone_number}</div>
+              <div className={styles.guide}><span className={styles.title_bold}>Гид: </span>{tourData.guides.guide_name}</div>
+              <div className={styles.guide_phone}><span className={styles.title_bold}>Номер телефона: </span>{tourData.guides.phone_number}</div>
             </div>
 
             <div className={styles.flights}>
