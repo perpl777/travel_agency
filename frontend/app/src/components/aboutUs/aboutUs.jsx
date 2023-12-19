@@ -37,7 +37,6 @@ function AboutUs() {
                 <img src={photo4} />
               </div>
             </div>
-           
         </div>
       </div>
     );

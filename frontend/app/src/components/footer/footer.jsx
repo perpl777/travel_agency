@@ -3,6 +3,7 @@ import phoneImg from './img/phone.svg';
 import whatsappImg from './img/whatsapp.svg';
 import tgImg from './img/tg.svg';
 
+
 function Footer() {
     return (
       <div className={styles.footer} id='id-contacts'>

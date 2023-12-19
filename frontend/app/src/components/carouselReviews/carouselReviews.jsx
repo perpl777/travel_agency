@@ -7,6 +7,7 @@ import avatar1 from "./img/a.png";
 import avatar2 from "./img/b.png";
 import avatar3 from "./img/c.png";
 
+
 const stylesSlides = {
     slideSize: "33%",
     slideGap: "md",
@@ -16,15 +17,14 @@ const stylesSlides = {
     dragFree: true,
     styles: {
         slide: {
-          display: "flex",
-          alignItems: "center",
-          marginRight: "100px",
-          marginLeft: "100px",
-          marginTop: "30px",
+            display: "flex",
+            alignItems: "center",
+            marginRight: "100px",
+            marginLeft: "100px",
+            marginTop: "30px",
         }
     }
 }
-
 
 function CarouselReviews() {
 
@@ -39,7 +39,7 @@ function CarouselReviews() {
         </Carousel>
     </div>
     );
-  }
-  
-  export default CarouselReviews;
+}
+
+export default CarouselReviews;
 

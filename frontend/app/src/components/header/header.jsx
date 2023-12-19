@@ -10,7 +10,6 @@ import CarouselTours from '../carouselPopular/carouselPopular';
 
 
 function Header() {
-
     const userData = JSON.parse(localStorage.getItem('userData'));
 
     const stylesSlides = {
@@ -35,10 +34,11 @@ function Header() {
         }
     }
 
-    
     const [date, setDate] = useState('');
     const [country, setCountry] = useState('');
+
     const [tourData, setTourData] = useState(null);
+
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = async (e) => {
@@ -51,7 +51,6 @@ function Header() {
                     country: country
                 }
             });
-
             if (response.data.length > 0) {
                 setTourData(response.data);
                 setErrorMessage('');
@@ -67,6 +66,7 @@ function Header() {
 
     return (
         <div className={styles.header}>
+
             <div className={styles.nav}>
                 <p className={styles.logoImg}>DESTINATION</p>
                 <a href='#id-about-us'>о нас</a>
@@ -86,31 +86,27 @@ function Header() {
         
             <h1>DESTINATION</h1>
             <h2>исследуй мир вместе с нами</h2>
+
             <div className={styles.searchTour}>
-                
                 <form onSubmit={handleSubmit} className={styles.formSearch}>
-                    
                     <label>
                         <p>Откуда</p>
                         <select placeholder="Город" className={styles.inputSearchTour}>
                             <option value="Москва" selected>Москва</option>
                         </select>       
                     </label>
-
                     <label>
                         <p>Куда</p>
                         <select placeholder="Страна" value={country} onChange={(e) => setCountry(e.target.value)} className={styles.inputSearchTour}>
-                            <option value="ОАЭ">ОАЭ</option>
+                            <option value="ОАЭ" selected>ОАЭ</option>
                             <option value="Тайланд">Тайланд</option>
                             <option value="Турция">Турция</option>
                         </select>       
                     </label>
-
                     <label>
                         <p>Дата</p>
                         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} placeholder="любые" className={styles.inputSearchTour}/>       
                     </label>
-
                     <button className={styles.btnSearch} type='submit'>
                         <div className={styles.btnText}>искать</div>
                         <img src={searchImg}/>
@@ -119,7 +115,6 @@ function Header() {
             </div>
 
             <div className={styles.tours}>
-
                 <div className={styles.titleTours}>Туры</div>
 
                 {errorMessage && <p className={styles.errorMessage}>Туры не найдены</p>}
@@ -129,12 +124,10 @@ function Header() {
                         {tourData.map((tour, index) => (
                             <Carousel.Slide> <Tour key={index} tourData={tour} /> </Carousel.Slide> 
                         ))}
-                    </Carousel>
-                ) : (
-                    <CarouselTours />
-                )}
+                    </Carousel>) 
+                    : 
+                    (<CarouselTours />)}
             </div>
-
         </div>
     );
 }

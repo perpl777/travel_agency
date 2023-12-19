@@ -21,6 +21,7 @@ function RegistrationPage() {
   });
 
   const [error,  setError] = useState('');
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChange = (e) => {
@@ -38,55 +39,44 @@ function RegistrationPage() {
       setError('Введите верное ФИО');
       return;
     }
-
     if (!/^\d{2}\.\d{2}\.\d{4}$/.test(formData.date_of_birth)) {
       setError('Введите верную дату рождения');
     return;
     }
-
     if (!formData.phone_number.match("[+]{1}[0-9]{11,14}")) {
       setError('Введите верно номер телефона');
       return;
     }
-
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       setError('Введите верно email');
       return;
     }
-
     if (
       formData.passport_issued_by.length < 2
     ) {
       setError('Введите корректно кем выдан паспорт');
       return;
     }
-
     if (!/^\d{2}\.\d{2}\.\d{4}$/.test(formData.passport_issue_date)) {
       setError('Введите верную дату выдачи паспорта');
     return;
     }
-
     if (!/^\d{4}$/.test(formData.passport_series)) {
       setError('Введите верно серию паспорта');
       return;
     }
-
     if (!/^\d{6}$/.test(formData.passport_number)) {
       setError('Введите верно номер паспорта');
       return;
     }
-
     if (!/^\d+$/.test(formData.password)) {
       setError('Пароль должен состоять только из цифр');
       return;
     }
-    
     if (formData.password.length < 3) {
       setError('Пароль должен быть больше 3 символов');
       return;
     }
-
-
     if (formData.password !== formData.passwordConfirm) {
       setError('Пароли не совпадают');
       return;
@@ -101,16 +91,14 @@ function RegistrationPage() {
     }
   };
 
-  
-
   return (
     <div className={styles.register}>
     <div className={styles.blackBlock}>
       <div className={styles.titleRegister}> Регистрация </div>
-     
-    
+      
       <form onSubmit={handleSubmit} className={styles.formRegister}>
         <div className={styles.columns}>
+
           <div className={styles.column}>
             <label>
               Имя
@@ -164,7 +152,9 @@ function RegistrationPage() {
             </label>
           </div>
         </div>
+
         <button type="submit" className={styles.btnRegister}>Зарегистрироваться</button>
+        
         {error && <h1 className={styles.error}>{error}</h1>}
       </form>
                 
@@ -174,6 +164,7 @@ function RegistrationPage() {
           <Link to={'/login'}><button className={styles.modalRegiserBtn}>вернуться на страницу входа</button></Link>
         </div>
         }
+
         <Link to={'/login'}><div className={styles.loginHref}>Уже зарегистрированы? Войти</div></Link>
         <Link to={'/'}><div className={styles.homeHref}>Вернуться на главную страницу</div></Link>
     </div>

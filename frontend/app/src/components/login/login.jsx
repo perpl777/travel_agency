@@ -6,7 +6,9 @@ import axios from 'axios';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const [user, setUser] = useState(null);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -17,15 +19,12 @@ function LoginPage() {
         setUser(parsedUserData);
       } catch (error) {
         console.error('Error parsing JSON:', error);
-        // Handle the error case here
       }
     } else {
       console.error('userData is undefined');
-      // Handle the undefined case here
     }
   }, []);
 
-  
   const handleLogin = async () => {
     try {
       const response = await axios.get('http://localhost:8000/login', {
@@ -34,17 +33,14 @@ function LoginPage() {
           password,
         },
       });
-  
       if (response.data.user) {
         setUser(response.data.user);
         setError(null);
-  
         // Сохраняем данные пользователя в хранилище
         localStorage.setItem('userData', JSON.stringify(response.data.user));
       } else {
         setError('Такого пользователя не существует');
       }
-  
     } catch (error) {
       setUser(null);
       setError('Ошибка входа');
@@ -64,17 +60,14 @@ function LoginPage() {
       setError('Введите верно email');
       return;
     }
-
     if (!/^\d+$/.test(password)) {
       setError('Пароль должен состоять только из цифр');
       return;
     }
-
     if (password.length < 3) {
       setError('Пароль должен быть больше 3 символов');
       return;
     }
-
 
     handleLogin();
   };
@@ -85,10 +78,12 @@ function LoginPage() {
         <div className={styles.loggedInContainer}>
           <div className={styles.loggedInMessage}>Приветствуем, {user.name}!</div>
           <Link to="/"><button className={styles.loggedButton}>На главную страницу</button></Link>
+          
           <button onClick={handleLogout} className={styles.loggedButton}>
             Выйти из аккаунта
           </button>
         </div>
+
       ) : (
       <div className={styles.blackBlock}>
         <div className={styles.titleLogin}> Вход </div>
@@ -108,6 +103,7 @@ function LoginPage() {
         <Link to={'/'}><div className={styles.homeHref}>Вернуться на главную страницу</div></Link>
         </div>
       )}
+      
     </div>
   );
 }

@@ -7,39 +7,48 @@ import { AuthContext } from './AuthContext';
 import { useContext } from 'react';
 
 function Tour({tourData}) {
-  const [showModal, setShowModal] = useState(false);
-
-  const { isLoggedIn } = useContext(AuthContext);
-  const [messageBuy, setMessageBuy] = useState('');
-
-  const handleButtonBuy = () => {
-    const userData = JSON.parse(localStorage.getItem('userData'));
-
-    if (userData) {
-      setMessageBuy(`Бронь подтверждена ${userData.name}. Мы свяжемся с вами в ближайшее время для потверждения оплаты.`);
-    } else {
-      setMessageBuy('Вы не авторизованы. Пожалуйста, авторизуйтесь или зарегистрируйтесь.');
-    }
-  };
-
-
   let Img = require(`./img/${tourData.hotels.photo}`);
   let Stars = require(`./img/${tourData.hotels.classhotel}.png`);
 
+  const [showModal, setShowModal] = useState(false);
+  const [messageBuy, setMessageBuy] = useState('');
   const [flights, setFlights] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
 
-  useEffect(() => {
-    const fetchFlights = async () => {
+  const handleButtonBuy = async () => {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+
+    if (userData) {
+      setMessageBuy(`Бронь подтверждена ${userData.name}. Мы свяжемся с вами в ближайшее время для подтверждения оплаты.`);
       try {
-        const response = await axios.get(`/flights/${tourData.tour.id}`);
-        setFlights(response.data.flights);
+        const response = await axios.post('http://localhost:8000/buy', {
+          phone_number: userData.phone_number,
+          tour_name: tourData.tour.tour_name
+        });
+        console.log(response.data);
       } catch (error) {
+        console.error(tourData.tour.tour_name);
         console.error(error);
       }
-    };
+    } else {
+        setMessageBuy('Вы не авторизованы. Пожалуйста, авторизуйтесь или зарегистрируйтесь.');
+    }
+  };
 
+  const fetchFlights = async () => {
+    setIsFetching(true);
+    try {
+      const response = await axios.get(`http://localhost:8000/flights/${tourData.tour.tour_name}`);
+      setFlights(response.data.flights);
+    } catch (error) {
+      console.error(error);
+    }
+    setIsFetching(false);
+  };
+
+  useEffect(() => {
     fetchFlights();
-  }, [tourData.tour.id]);
+  }, [tourData]);
 
 
   const handleButtonClick = () => {
@@ -53,8 +62,6 @@ function Tour({tourData}) {
 
   return (
     <div className={styles.block}>
-      
-  
       <div className={styles.countryTour}>{tourData.tour.country}</div>
       <div className={styles.nameTour}>{tourData.tour.tour_name}</div>
 
@@ -90,42 +97,44 @@ function Tour({tourData}) {
             </button>
             <div>
             <div className={styles.name_tour}>Тур: {tourData.tour.tour_name}</div>
-
             <div className={styles.country_tour}>Страна: {tourData.tour.country}, {tourData.city.city_name}</div>
             <div className={styles.data_tour}>Дата: {tourData.tour.arrival_date} - {tourData.tour.departure_date}</div>
             <div className={styles.price_tour}>Цена: {tourData.tour.price} руб</div>
             </div>
-
             <div>
               <div className={styles.hotel}>Отель: {tourData.hotels.hotel_name}</div>
               <div className={styles.starsh}>Класс отеля: {tourData.hotels.classhotel}*</div>
             </div>
-
             <div>
               <div className={styles.excursion_name}>Экскурсии: {tourData.excursions.excursion_name}</div>
               <div className={styles.excursion_descr}>{tourData.excursions.description}</div>
             </div>
-
             <div>
               <div className={styles.guide}>Гид: {tourData.guides.guide_name}</div>
               <div className={styles.guide_phone}>Номер телефона: {tourData.guides.phone_number}</div>
             </div>
 
             <div className={styles.flights}>
+            {flights && flights.length > 0 ? (
               <ul>
                 {flights.map((flight) => (
-                  <li key={flight.id}>
-                    <div className={styles.flight_date}>Дата: {flight.date}</div>
-                    <div className={styles.flight_name}>Вылет: {flight.departure_time}</div>
-                    <div className={styles.flight_name}>Прилет: {flight.arrival_time}</div>
-                    <div className={styles.departure_loc}>Место вылета: {flight.departure_location}</div>
-                    <div className={styles.arrival_loc}>Место прилета: {flight.arrival_location}</div>
-                    <div className={styles.airplane_name}>Самолет: {flight.airplane_name}</div>
+                  <li key={flight.date}>
+                    <div>Дата: {flight.date}</div>
+                    <div>Время вылета: {flight.departure_time}</div>
+                    <div>Время прилета: {flight.arrival_time}</div>
+                    <div>Место убытия: {flight.departure_location}</div>
+                    <div>Место прибытия: {flight.arrival_location}</div>
+                    <div>Самолет: {flight.airplane_name}</div>
                   </li>
                 ))}
               </ul>
+            ) : (
+              <div>Рейсы отсутствуют</div>
+            )}
             </div>
+
             <button type="submit" onClick={handleButtonBuy} className={styles.btnChoice2}>Забронировать</button>
+            
             {messageBuy && 
             <>
               <div className={styles.messageBuy}>{messageBuy}</div>

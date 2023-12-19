@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import psycopg2
 
-
 app = FastAPI(title="My App", docs_url="/documentation", redoc_url=None)
 
 # middleware для разрешения CORS
@@ -13,6 +12,7 @@ app.add_middleware(
     allow_methods=['GET', 'POST', 'PUT', 'DELETE'],
     allow_headers=['Content-Type'],
 )
+
 
 # Модели данных
 class Tours(BaseModel):
@@ -41,6 +41,7 @@ class Hotels(BaseModel):
 class Guides(BaseModel):
     guide_name: str
     phone_number: str
+
 @app.get("/tour")
 async def get_tour_by_date_and_country(date: str, country: str):
     try:
@@ -113,6 +114,7 @@ async def get_tour_by_date_and_country(date: str, country: str):
         conn.close()
 
 
+
 # Модель данных для регистрации пользователя
 class UserRegistration(BaseModel):
     name: str
@@ -163,9 +165,7 @@ async def register_user(user_data: UserRegistration):
 
 
 
-
-
-# Модель данных для пользователя
+# Модель данных для логина пользователя
 class User(BaseModel):
     name: str
     surname: str
@@ -198,7 +198,7 @@ async def get_user_by_email_and_password(email: str, password: str):
         
         # Выполнение запроса на поиск пользователя по электронной почте и паролю
         cursor.execute("""
-            SELECT users.name, users.surname, users.patronymic, users.date_of_birth, users.email, users.phone_number, users.password,
+            SELECT users.id, users.name, users.surname, users.patronymic, users.date_of_birth, users.email, users.phone_number, users.password,
                 passport_data.passport_issued_by, passport_data.passport_issue_date, passport_data.passport_series, passport_data.passport_number
             FROM users
             INNER JOIN passport_data ON users.id = passport_data.user_id
@@ -209,16 +209,17 @@ async def get_user_by_email_and_password(email: str, password: str):
         # Если пользователь найден, формируем объекты User и PassportData
         if user_data:
             user = User(
-                name=user_data[0],
-                surname=user_data[1],
-                patronymic=user_data[2],
-                date_of_birth=user_data[3],
-                email=user_data[4],
-                phone_number=user_data[5],
+                id=user_data[0],
+                name=user_data[1],
+                surname=user_data[2],
+                patronymic=user_data[3],
+                date_of_birth=user_data[4],
+                email=user_data[5],
+                phone_number=user_data[6],
                 password=password
             )
             passport = PassportData(
-                user_id=user_data[6],
+                user_id=user_data[0],
                 passport_issued_by=user_data[7],
                 passport_issue_date=user_data[8],
                 passport_series=user_data[9],
@@ -239,7 +240,7 @@ async def get_user_by_email_and_password(email: str, password: str):
         conn.close()
 
 
-
+# Модель данных для рейсов
 class Flight(BaseModel):
     date: str
     departure_time: str
@@ -248,8 +249,8 @@ class Flight(BaseModel):
     arrival_location: str
     airplane_name: str
 
-@app.get("/flights/{tour_id}")
-async def get_flight_by_tour_id(tour_id: int):
+@app.get("/flights/{tour_name}")
+async def get_flights_by_tour_name(tour_name: str):
     try:
         conn = psycopg2.connect(
             dbname="destination",
@@ -258,6 +259,13 @@ async def get_flight_by_tour_id(tour_id: int):
             host="localhost"
         )
         cursor = conn.cursor()
+
+        # Находим tour_id по названию тура
+        cursor.execute("SELECT id FROM tours WHERE tour_name = %s", (tour_name,))
+        tour_id = cursor.fetchone()
+
+        if tour_id is None:
+            return {"message": "Tour not found"}
 
         cursor.execute("""
             SELECT flight.date, flight.departure_time, flight.arrival_time,
@@ -294,10 +302,10 @@ async def get_flight_by_tour_id(tour_id: int):
 
 
 
-# Модель данных
+# Модель данных для создания записи о покупке тура
 class UserTour(BaseModel):
-    users_id: int
-    tours_id: int
+    phone_number: str
+    tour_name: str
 
 @app.post("/buy")
 async def create_user_tour(user_tour: UserTour):
@@ -310,17 +318,32 @@ async def create_user_tour(user_tour: UserTour):
         )
         cursor = conn.cursor()
 
+        # Находим айди пользователя по номеру телефона
+        cursor.execute("SELECT id FROM users WHERE phone_number = %s", (user_tour.phone_number,))
+        user_id = cursor.fetchone()
+
+        if user_id is None:
+            return {"message": "User not found"}
+
+        # Находим айди тура по его названию
+        cursor.execute("SELECT id FROM tours WHERE tour_name = %s", (user_tour.tour_name,))
+        tour_id = cursor.fetchone()
+
+        if tour_id is None:
+            return {"message": "Tour not found"}
+
+        # Создаем запись о покупке тура с использованием айди пользователя и айди тура
         cursor.execute("""
             INSERT INTO user_tour (users_id, tours_id)
             VALUES (%s, %s)
-        """, (user_tour.users_id, user_tour.tours_id))
+        """, (user_id[0], tour_id[0]))
 
         conn.commit()
 
         return {"message": "User tour created successfully"}
 
     except Exception as e:
-        return {"message": "Error occurred while creating user tour"}
+        return {"error": str(e)}
 
     finally:
         cursor.close()
